@@ -1,0 +1,89 @@
+README for mel2wp - Mellel to WordPress conversion assistant
+Shane Landrum <srl@cliotropic.org>
+Last updated January 22, 2010
+=======================================================================
+
+Footnotes and endnotes are essential to scholarly publishing as a way to
+acknowledge our debt to other researchers. They're common in print
+publications, and in humanities fields they're often full of commentary
+and side points to the main argument.
+
+For my WordPress blog, I use the FD Footnotes plugin 
+(http://flagrantdisregard.com/footnotes-plugin/), which generates nice
+little hyperlinked endnotes. Using it, text formatted like [1. This is a
+footnote] get a little superscript footnote number in the text, and the
+footnote itself shows up at the bottom of the post.
+
+FD Footnotes works well if you're writing the original draft of a post
+in WordPress, but not so well if you're trying to publish a paper that
+you originally wrote in a word processor. I use Mellel
+(www.redlers.com), which works more reliably for me on OS X than Word
+does.
+
+This script is a little hack to make it easier to convert scholarly
+papers written with Mellel (www.redlers.com) into a format that will
+post nicely on a WordPress blog.
+
+--------------------------------------------------------------------------
+CAVEATS:
+
+This is an *alpha* version, but it's better than nothing. It's been 
+tested on OS X Leopard only. Use at your own risk. Read the 
+bugs-and-limitations list below to avoid getting your hopes up.
+
+You'll need to be familiar with command-line interactions in Terminal to
+use this version.
+
+--------------------------------------------------------------------------
+USAGE:
+
+- Make sure your blog has the FD Footnotes plugin installed.
+
+- Start Mellel, and make sure your document's footnotes are rendered as
+endnotes.
+
+- Select all of the Mellel document (Cmd-A) and copy it to the
+clipboard.
+
+- Open a text editor, paste the selected text in, and save it in a
+convenient location. (Your endnote markers should show up in the body
+text surrounded by 2 asterisks, with the corresponding note text at the
+end of the file.)
+
+- If your file is named input.txt, invoke mel2wp like this:
+
+  mel2wp.pl input.txt >output.txt
+
+Once you've done that, output.txt should contain a better-footnoted
+version of your text.
+
+- Open output.txt in a text editor; select all the text; copy it to the
+clipboard.
+
+- Open a browser, start a new post in WordPress, and click on the "paste
+text" button in the visual editor (next to the "paste from Word"
+button). Paste in the clipboard text.
+
+- Save your draft post. Revise as necessary to get the formatting right.
+
+--------------------------------------------------------------------------
+KNOWN BUGS, LIMITATIONS, WISHES:
+
+- The process of copying from Mellel to text clobbers all italics,
+boldface, and inserted graphics. (There's probably a way to use an RTF
+export from Mellel instead, but I haven't time to figure that out.
+If you do, let me know.)
+
+- If your footnotes contain square brackets, FD Footnotes won't display
+them correctly. This is a problem with FD Footnotes, strictly speaking,
+but researchers who use Chicago footnote styles should be aware of it.
+For now, I work around it by turning all square brackets to parentheses
+before I feed my documents through this script. If you'd like to work 
+with the FD Footnotes author to come up with a better solution, please
+do.
+
+- I'd love to have an Applescript wrapper for this so that people who 
+don't understand the shell can use it.
+
+- A demo script with sample input/output files would be nice, as would
+a testing script for developers.
